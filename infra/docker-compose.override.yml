@@ -1,0 +1,24 @@
+name: lex
+services:
+  api:
+    build: { context: .., dockerfile: src/Host/Lex.API/Dockerfile }
+    image: lex-api:dev
+    environment: { ASPNETCORE_ENVIRONMENT: Development }
+    ports: ["5000:8080"]
+  web:
+    build: { context: ../client, dockerfile: Dockerfile }
+    image: lex-web:dev
+    ports: ["3000:3000"]
+  postgres:
+    ports: ["5432:5432"]
+  rabbitmq:
+    ports: ["5672:5672", "15672:15672"]
+  redis:
+    ports: ["6379:6379"]
+  keycloak:
+    command: ["start-dev", "--import-realm"]
+    ports: ["8080:8080"]
+  minio:
+    ports: ["9000:9000", "9001:9001"]
+  seq:
+    ports: ["5341:5341", "8082:80"]

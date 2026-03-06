@@ -1,0 +1,44 @@
+{
+  "realm": "lex",
+  "displayName": "Lex Platform",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "resetPasswordAllowed": true,
+  "bruteForceProtected": true,
+  "clients": [
+    {
+      "clientId": "lex-web",
+      "name": "Lex Web",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "attributes": { "pkce.code.challenge.method": "S256" },
+      "redirectUris": ["https://*", "http://localhost:3000/*"],
+      "webOrigins": ["https://*", "http://localhost:3000"]
+    },
+    {
+      "clientId": "lex-api",
+      "enabled": true,
+      "publicClient": false,
+      "serviceAccountsEnabled": true,
+      "bearerOnly": true
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "admin",   "description": "Platform administrator" },
+      { "name": "teacher", "description": "Teaching staff" },
+      { "name": "student", "description": "Student" }
+    ]
+  },
+  "identityProviders": [{
+    "alias": "google",
+    "displayName": "Continue with Google",
+    "providerId": "google",
+    "enabled": false,
+    "config": { "clientId": "${GOOGLE_CLIENT_ID}", "clientSecret": "${GOOGLE_CLIENT_SECRET}", "syncMode": "IMPORT" }
+  }]
+}

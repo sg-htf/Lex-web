@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <!-- Infrastructure may NOT reference other Module.*.Core or Module.*.Infrastructure -->
+  <ItemGroup>
+    <ProjectReference Include="..$APP.Module.Scheduling.Core$APP.Module.Scheduling.Core.csproj" />
+    <ProjectReference Include="..\..\..\Core\Lex.Infrastructure\Lex.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore"          Version="8.*" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"  Version="8.*" />
+    <PackageReference Include="MassTransit.RabbitMQ"                   Version="8.*" />
+    <PackageReference Include="Refit.HttpClientFactory"                Version="7.*" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience"   Version="8.*" />
+  </ItemGroup>
+</Project>

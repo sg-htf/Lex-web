@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <!-- Core may ONLY reference SharedKernel. No EF, no MassTransit, no other modules. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Lex.SharedKernel\Lex.SharedKernel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR"           Version="12.*" />
+    <PackageReference Include="FluentValidation"  Version="11.*" />
+  </ItemGroup>
+</Project>

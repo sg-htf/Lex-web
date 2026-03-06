@@ -1,0 +1,70 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/Lex.Infrastructure/Lex.Infrastructure.csproj" />
+    <Project Path="src/Core/Lex.SharedKernel/Lex.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/src/Host/">
+    <Project Path="src/Host/Lex.API/Lex.API.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Lex.Module.AssessmentCreation/">
+    <Project Path="src/Modules/Lex.Module.AssessmentCreation/Lex.Module.AssessmentCreation.Core/Lex.Module.AssessmentCreation.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.AssessmentCreation/Lex.Module.AssessmentCreation.Infrastructure/Lex.Module.AssessmentCreation.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.AssessmentDelivery/">
+    <Project Path="src/Modules/Lex.Module.AssessmentDelivery/Lex.Module.AssessmentDelivery.Core/Lex.Module.AssessmentDelivery.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.AssessmentDelivery/Lex.Module.AssessmentDelivery.Infrastructure/Lex.Module.AssessmentDelivery.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.DiaryManagement/">
+    <Project Path="src/Modules/Lex.Module.DiaryManagement/Lex.Module.DiaryManagement.Core/Lex.Module.DiaryManagement.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.DiaryManagement/Lex.Module.DiaryManagement.Infrastructure/Lex.Module.DiaryManagement.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.FileProcessing/">
+    <Project Path="src/Modules/Lex.Module.FileProcessing/Lex.Module.FileProcessing.Core/Lex.Module.FileProcessing.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.FileProcessing/Lex.Module.FileProcessing.Infrastructure/Lex.Module.FileProcessing.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.GoogleIntegration/">
+    <Project Path="src/Modules/Lex.Module.GoogleIntegration/Lex.Module.GoogleIntegration.Core/Lex.Module.GoogleIntegration.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.GoogleIntegration/Lex.Module.GoogleIntegration.Infrastructure/Lex.Module.GoogleIntegration.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.ImportExport/">
+    <Project Path="src/Modules/Lex.Module.ImportExport/Lex.Module.ImportExport.Core/Lex.Module.ImportExport.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.ImportExport/Lex.Module.ImportExport.Infrastructure/Lex.Module.ImportExport.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.LessonManagement/">
+    <Project Path="src/Modules/Lex.Module.LessonManagement/Lex.Module.LessonManagement.Core/Lex.Module.LessonManagement.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.LessonManagement/Lex.Module.LessonManagement.Infrastructure/Lex.Module.LessonManagement.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.Notifications/">
+    <Project Path="src/Modules/Lex.Module.Notifications/Lex.Module.Notifications.Core/Lex.Module.Notifications.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.Notifications/Lex.Module.Notifications.Infrastructure/Lex.Module.Notifications.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.ObjectStorage/">
+    <Project Path="src/Modules/Lex.Module.ObjectStorage/Lex.Module.ObjectStorage.Core/Lex.Module.ObjectStorage.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.ObjectStorage/Lex.Module.ObjectStorage.Infrastructure/Lex.Module.ObjectStorage.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.Reporting/">
+    <Project Path="src/Modules/Lex.Module.Reporting/Lex.Module.Reporting.Core/Lex.Module.Reporting.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.Reporting/Lex.Module.Reporting.Infrastructure/Lex.Module.Reporting.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Lex.Module.Scheduling/">
+    <Project Path="src/Modules/Lex.Module.Scheduling/Lex.Module.Scheduling.Core/Lex.Module.Scheduling.Core.csproj" />
+    <Project Path="src/Modules/Lex.Module.Scheduling/Lex.Module.Scheduling.Infrastructure/Lex.Module.Scheduling.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Lex.ArchitectureTests/Lex.ArchitectureTests.csproj" />
+    <Project Path="tests/Lex.IntegrationTests/Lex.IntegrationTests.csproj" />
+    <Project Path="tests/Lex.Module.AssessmentCreation.Tests/Lex.Module.AssessmentCreation.Tests.csproj" />
+    <Project Path="tests/Lex.Module.AssessmentDelivery.Tests/Lex.Module.AssessmentDelivery.Tests.csproj" />
+    <Project Path="tests/Lex.Module.DiaryManagement.Tests/Lex.Module.DiaryManagement.Tests.csproj" />
+    <Project Path="tests/Lex.Module.FileProcessing.Tests/Lex.Module.FileProcessing.Tests.csproj" />
+    <Project Path="tests/Lex.Module.GoogleIntegration.Tests/Lex.Module.GoogleIntegration.Tests.csproj" />
+    <Project Path="tests/Lex.Module.ImportExport.Tests/Lex.Module.ImportExport.Tests.csproj" />
+    <Project Path="tests/Lex.Module.LessonManagement.Tests/Lex.Module.LessonManagement.Tests.csproj" />
+    <Project Path="tests/Lex.Module.Notifications.Tests/Lex.Module.Notifications.Tests.csproj" />
+    <Project Path="tests/Lex.Module.ObjectStorage.Tests/Lex.Module.ObjectStorage.Tests.csproj" />
+    <Project Path="tests/Lex.Module.Reporting.Tests/Lex.Module.Reporting.Tests.csproj" />
+    <Project Path="tests/Lex.Module.Scheduling.Tests/Lex.Module.Scheduling.Tests.csproj" />
+  </Folder>
+</Solution>

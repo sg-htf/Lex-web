@@ -1,0 +1,16 @@
+bin/
+obj/
+*.user
+.vs/
+.idea/
+TestResults/
+coverage/
+.env
+*.env.local
+secrets/
+node_modules/
+.next/
+.turbo/
+dist/
+.DS_Store
+Thumbs.db

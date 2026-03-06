@@ -1,0 +1,122 @@
+name: lex
+
+services:
+  api:
+    image: ghcr.io/your-org/lex-api:${LEX_VERSION:-latest}
+    restart: unless-stopped
+    depends_on:
+      postgres:  { condition: service_healthy }
+      rabbitmq:  { condition: service_healthy }
+      redis:     { condition: service_healthy }
+      keycloak:  { condition: service_healthy }
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=lex;Username=lex;Password=${DB_PASSWORD}"
+      ConnectionStrings__Redis: "redis:6379"
+      RabbitMq__Host: rabbitmq
+      RabbitMq__Username: lex
+      RabbitMq__Password: ${RABBITMQ_PASSWORD}
+      Keycloak__Authority: "http://keycloak:8080/realms/lex"
+      Keycloak__ClientId: lex-api
+      MinIO__Endpoint: "minio:9000"
+      MinIO__AccessKey: ${MINIO_ACCESS_KEY}
+      MinIO__SecretKey: ${MINIO_SECRET_KEY}
+      Observability__SeqUrl: "http://seq:5341"
+    ports: ["443:8443", "80:8080"]
+    networks: [lex-net]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s; timeout: 10s; retries: 3; start_period: 60s
+
+  web:
+    image: ghcr.io/your-org/lex-web:${LEX_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_APP_NAME: Lex
+      NEXT_PUBLIC_KEYCLOAK_URL: ${KEYCLOAK_PUBLIC_URL}
+      NEXT_PUBLIC_KEYCLOAK_REALM: lex
+      NEXT_PUBLIC_KEYCLOAK_CLIENT_ID: lex-web
+    networks: [lex-net]
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment: { POSTGRES_DB: lex, POSTGRES_USER: lex, POSTGRES_PASSWORD: "${DB_PASSWORD}" }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    networks: [lex-net]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lex -d lex"]
+      interval: 10s; timeout: 5s; retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: unless-stopped
+    environment: { RABBITMQ_DEFAULT_USER: lex, RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD}" }
+    volumes: [rabbitmq-data:/var/lib/rabbitmq]
+    networks: [lex-net]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s; timeout: 5s; retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    networks: [lex-net]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s; timeout: 3s; retries: 5
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    restart: unless-stopped
+    command: ["start", "--optimized"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: "jdbc:postgresql://postgres:5432/lex"
+      KC_DB_USERNAME: lex
+      KC_DB_PASSWORD: ${DB_PASSWORD}
+      KC_HOSTNAME: ${KEYCLOAK_PUBLIC_URL}
+      KC_PROXY: edge
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ./keycloak/lex-realm.json:/opt/keycloak/data/import/lex-realm.json:ro
+    depends_on: { postgres: { condition: service_healthy } }
+    networks: [lex-net]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health/ready || exit 1"]
+      interval: 30s; timeout: 10s; retries: 5; start_period: 90s
+
+  minio:
+    image: minio/minio:RELEASE.2024-01-01T00-00-00Z
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment: { MINIO_ROOT_USER: "${MINIO_ACCESS_KEY}", MINIO_ROOT_PASSWORD: "${MINIO_SECRET_KEY}" }
+    volumes: [minio-data:/data]
+    networks: [lex-net]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s; timeout: 10s; retries: 3
+
+  seq:
+    image: datalust/seq:latest
+    restart: unless-stopped
+    environment: { ACCEPT_EULA: "Y" }
+    volumes: [seq-data:/data]
+    ports: ["8083:80"]
+    networks: [lex-net]
+
+volumes:
+  pgdata:
+  rabbitmq-data:
+  keycloak-data:
+  minio-data:
+  seq-data:
+
+networks:
+  lex-net:
+    driver: bridge

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Modules\Lex.Module.Notifications\Lex.Module.Notifications.Core\Lex.Module.Notifications.Core.csproj" />
+    <ProjectReference Include="..\..\src\Modules\Lex.Module.Notifications\Lex.Module.Notifications.Infrastructure\Lex.Module.Notifications.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk"        Version="17.*" />
+    <PackageReference Include="xunit"                         Version="2.*" />
+    <PackageReference Include="xunit.runner.visualstudio"     Version="2.*" />
+    <PackageReference Include="FluentAssertions"              Version="6.*" />
+    <PackageReference Include="Moq"                           Version="4.*" />
+    <PackageReference Include="Testcontainers.PostgreSql"     Version="3.*" />
+    <PackageReference Include="WireMock.Net"                  Version="1.*" />
+    <PackageReference Include="MassTransit.TestFramework"     Version="8.*" />
+  </ItemGroup>
+</Project>
