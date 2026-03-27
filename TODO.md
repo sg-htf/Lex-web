@@ -3,9 +3,9 @@ The sequence follows a few rules: foundational layers before dependent modules, 
 
 Lex — Sequential Implementation Checklist
 Phase 0 — Foundation (nothing works without this)
-	∙	Finalize and write ADR-013 (object storage dual-provider design: PostgreSQL bytea + Garage, metadata model, auth model, migration path)
-	∙	Stabilize BlockContent model in SharedKernel — define the base block types (text, image, embedded diagram, custom block), versioning strategy, and serialization contract before any module consumes it
-	∙	Define Result<T> and Error types in SharedKernel with all error categories (NotFound, Validation, Forbidden, Conflict, Infrastructure)
+	∙	DECIDED - Garage used as primary always - Finalize and write ADR-013 (object storage dual-provider design: PostgreSQL bytea + Garage, metadata model, auth model, migration path)
+	∙	DONE - Stabilize BlockContent model in SharedKernel — define the base block types (text, image, embedded diagram, custom block), versioning strategy, and serialization contract before any module consumes it
+	∙	DONE - Define Result<T> and Error types in SharedKernel with all error categories (NotFound, Validation, Forbidden, Conflict, Infrastructure)
 	∙	Define IDomainEvent base interface and event envelope (correlation ID, timestamp, source module) in SharedKernel
 	∙	Define ICurrentUser service interface in SharedKernel (userId, roles, tenantId)
 	∙	Write IObjectStorageService / IFileStorageService adapter interfaces in SharedKernel per ADR-002
